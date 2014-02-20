@@ -1,4 +1,4 @@
-
+/* TODO Javadoc. */
 public class Mastermind 
 {
 	private final int Vert = 1 ;
@@ -16,7 +16,7 @@ public class Mastermind
 		System.out.println("Choisissez le nombre de joueur (1 ou 2) :");
 		//recuperation de la reponse
 		//......
-		//Appel de la méthode correspondante au condition de jeu
+		//Appel de la mï¿½thode correspondante au condition de jeu
 		//Fin du menu
 	}
 
