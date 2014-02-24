@@ -10,12 +10,12 @@ public class Code
 		this.mesPions = new Pion[niv_longueur];
 	}
 	
-	public void CodeSecretAuto(int niv_longueur, Code monCodeSecret)
+	public void CodeSecretAuto(Code monCodeSecret)
 	{
-		this.longueur = niv_longueur;
-		for (int i=0; i<=niv_longueur; i++)
+		for (int i=0; i<=monCodeSecret.longueur; i++)
 		{
-		
+			monCodeSecret.mesPions[i] = random(Couleur);
+			//A chercher comment utiliser la fonction random
 		}
 		
 		

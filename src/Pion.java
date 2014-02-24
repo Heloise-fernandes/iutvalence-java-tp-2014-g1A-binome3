@@ -14,4 +14,8 @@ public class Pion {
 		{
 			return this.position;
 		}
+		public Couleur getCouleur()
+		{
+			return this.couleur;
+		}
 }
