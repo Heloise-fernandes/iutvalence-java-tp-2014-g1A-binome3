@@ -1,7 +1,8 @@
+/* TODO Javadoc */
+/* TODO Package. */
 
 public class Pion {
-        /* TODO Meme question sur l'enum. */
-		private Couleur couleur;
+        private Couleur couleur;
 		private int position;
 		
 		public Pion (Couleur c,int p)
@@ -9,7 +10,8 @@ public class Pion {
 			this.couleur = c;
 			this.position = p;
 		}
-		
+
+        /* TODO Evitez le franglais. */
 		public int getPosition()
 		{
 			return this.position;
