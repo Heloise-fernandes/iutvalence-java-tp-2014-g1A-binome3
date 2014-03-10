@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /* TODO Javadoc */
 /* TODO Package. */
 
@@ -7,20 +9,18 @@ public class Code
     /* TODO Final ? */
 	Pion[] mesPions;
 
-    /* TODO Par convention en Java les noms de parametres n'ont pas de '_'. */
-	public Code(int niv_longueur)
+	public Code(int nivLongueur)
 	{
-		this.longueur = niv_longueur;
-		this.mesPions = new Pion[niv_longueur];
+		this.longueur = nivLongueur;
+		this.mesPions = new Pion[nivLongueur];
 	}
 
-    /* TODO Par convention en Java les noms de méthodes n'ont pas de majuscule. */
-    public void CodeSecretAuto(Code monCodeSecret)
+    public static void codeSecretAuto(Code monCodeSecret)
 	{
 		for (int i=0; i<=monCodeSecret.longueur; i++)
 		{
-			monCodeSecret.mesPions[i] = random(Couleur);
-			//A chercher comment utiliser la fonction random
+			int pick = new Random().nextInt(Couleur.values().length);
+		    monCodeSecret.mesPions[i].changerCouleur(Couleur.values()[pick]);
 		}
 	}
 
@@ -28,5 +28,38 @@ public class Code
 	{
 		mesPions[choixPion.getPosition()] = choixPion;
 	}
-
+	
+	public static Code testMatch(Code bonCode, Code testCode)
+	{
+		int k=0;
+		int l=0;
+		boolean conf=false;
+		Code codeCorrection = new Code(5);
+		while (k<5)
+		{
+			if(bonCode.mesPions[k]==testCode.mesPions[k])
+			{
+				codeCorrection.mesPions[k].changerCouleur(Couleur.VERT);
+				
+			}
+			else
+			{
+				while (l<5)
+				{
+					if(testCode.mesPions[k]==bonCode.mesPions[l])
+					{
+						codeCorrection.mesPions[k].changerCouleur(Couleur.ROUGE);
+						conf=true;
+					}
+					l++;
+				}
+				if(conf==false)
+				{
+					codeCorrection.mesPions[k].changerCouleur(Couleur.NOIR);
+				}
+			}
+			k++;
+		}
+		return codeCorrection;
+	}
 }

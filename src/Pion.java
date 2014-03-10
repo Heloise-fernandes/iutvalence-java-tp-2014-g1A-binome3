@@ -20,4 +20,8 @@ public class Pion {
 		{
 			return this.couleur;
 		}
+		public void changerCouleur(Couleur newCouleur)
+		{
+			this.couleur=newCouleur;
+		}
 }
