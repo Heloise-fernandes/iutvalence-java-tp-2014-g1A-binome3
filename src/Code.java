@@ -34,7 +34,7 @@ public class Code
 	}
 
     /* TODO Pourquoi static ? */
-    /* TODO Pourquoi d'autres paramètres ? */
+    /* TODO Pourquoi deux paramètres ? */
     /* TODO Etes-vous sur que ça marche ? */
     /* TODO Algo à retravailler. */
 	public static Code testMatch(Code bonCode, Code testCode)
