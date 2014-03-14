@@ -11,17 +11,12 @@ public class Application {
 			//Affichage des differents niveaux
 			//Choix du niveau
 			//Demarage:
-			Mastermind newGame = new Mastermind();
+			Couleur.Mastermind newGame = new Couleur.Mastermind();
 			win=newGame.niveau();
 			if (win)
 				System.out.println("Vous avez gagner !!");
 			else
 				System.out.println("Vous avez perdu !! (Tetris c'etait bien hein ?)");
 			//Fin du menu
-		
-		
-		
-
 	}
-
 }
