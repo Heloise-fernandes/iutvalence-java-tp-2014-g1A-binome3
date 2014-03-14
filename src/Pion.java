@@ -2,7 +2,9 @@
 /* TODO Package. */
 
 public class Pion {
+        /* TODO Est-ce que ça change en cours de partie ? */
         private Couleur couleur;
+        /* TODO Est-ce utile de retenir sa position ici ? */
 		private int position;
 		
 		public Pion (Couleur c,int p)
