@@ -11,7 +11,7 @@ public class Application {
 			//Affichage des differents niveaux
 			//Choix du niveau
 			//Demarage:
-			Couleur.Mastermind newGame = new Couleur.Mastermind();
+			Mastermind newGame = new Mastermind();
 			win=newGame.niveau();
 			if (win)
 				System.out.println("Vous avez gagner !!");

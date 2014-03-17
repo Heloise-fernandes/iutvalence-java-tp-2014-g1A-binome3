@@ -1,71 +1,61 @@
 /* TODO Javadoc */
 /* TODO Package. */
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class Code
 {
-    /* TODO Est-ce utile de retenir les deux informations ? Ne peut-on pas inférer la première par la seconde ? */
-	private final int longueur;
-    /* TODO Final ? */
 	Pion[] mesPions;
-
+	/*Constructeur du code normal*/
 	public Code(int nivLongueur)
 	{
-		this.longueur = nivLongueur;
 		this.mesPions = new Pion[nivLongueur];
-	}
-
-    /* TODO Est-ce que ce n'est pas une autre forme de constructeur ? */
-    public static void codeSecretAuto(Code monCodeSecret)
-	{
-		for (int i=0; i<=monCodeSecret.longueur; i++)
+		for(int i=0;i<nivLongueur;i++)
 		{
-            /* TODO On préférera SecureRandom à Random. */
-			int pick = new Random().nextInt(Couleur.values().length);
-		    monCodeSecret.mesPions[i].changerCouleur(Couleur.values()[pick]);
+			this.mesPions[i] = new Pion(Couleur.BLANC);
 		}
 	}
-
-    /* TODO Vous n'utilisez jamais cette méthode. */
-	public void ajouterPion(Pion choixPion)
+/*Constructeur du code secret*/
+    public Code()
 	{
-		mesPions[choixPion.getPosition()] = choixPion;
+    	this.mesPions = new Pion[5];
+		for (int i=0; i<5; i++)
+		{
+			this.mesPions[i]=new Pion(Couleur.BLANC);
+			int pick = new SecureRandom().nextInt(Couleur.values().length);
+		    this.mesPions[i].changerCouleur(Couleur.values()[pick]);
+		}
 	}
-
-    /* TODO Pourquoi static ? */
-    /* TODO Pourquoi deux paramètres ? */
-    /* TODO Etes-vous sur que ça marche ? */
-    /* TODO Algo à retravailler. */
-	public static Code testMatch(Code bonCode, Code testCode)
+    /* TODO Etes-vous sur que ca marche ? */
+    /* TODO Algo a� retravailler. */
+	public Code testMatch(Code bonCode)
 	{
 		int k=0;
 		int l=0;
 		boolean conf=false;
-        /* TODO Pourquoi forcer la taille à 5 ? */
 		Code codeCorrection = new Code(5);
 		while (k<5)
 		{
-            /* TODO Vous ne devriez pas comparer des objets avec '==' mais avec la méthode equals. */
-			if(bonCode.mesPions[k]==testCode.mesPions[k])
+			conf=false;
+			l=0;
+			if(bonCode.mesPions[k].getCouleur().equals(this.mesPions[k].getCouleur()))
 			{
 				codeCorrection.mesPions[k].changerCouleur(Couleur.VERT);
+				conf=true;
 				
 			}
 			else
 			{
 				while (l<5)
 				{
-                    /* TODO Vous ne devriez pas comparer des objets avec '==' mais avec la méthode equals. */
-                    if(testCode.mesPions[k]==bonCode.mesPions[l])
+                    if(this.mesPions[k].getCouleur().equals(bonCode.mesPions[l].getCouleur()))
 					{
 						codeCorrection.mesPions[k].changerCouleur(Couleur.ROUGE);
 						conf=true;
 					}
 					l++;
 				}
-                /* TODO Pourquoi pas simplement "!conf" ? */
-				if(conf==false)
+				if(!conf)
 				{
 					codeCorrection.mesPions[k].changerCouleur(Couleur.NOIR);
 				}
@@ -73,5 +63,13 @@ public class Code
 			k++;
 		}
 		return codeCorrection;
+	}
+	public String toString()
+	{
+		String codeTexte=" ";
+		for (Pion pion : this.mesPions) {
+			codeTexte += pion.getCouleur();
+		}
+		return codeTexte;
 	}
 }

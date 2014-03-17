@@ -7,20 +7,21 @@ public class Mastermind
 	public boolean niveau()
 	{
         /* TODO Pourquoi forcer la taille ? */
-        Code leCodeSecret = new Code(5);
-		Code.codeSecretAuto(leCodeSecret);
+        Code leCodeSecret = new Code();
 		Code codeValidation = new Code(5);
 		Scanner sc = new Scanner(System.in);
         int j = 0;
         int i = 0;
         int l = 0;
+        int k = 0;
         /* TODO Pourquoi 15 ? Pourquoi pas une constante ? */
         while (j<15)
 		{
 			Code monNouveauCode= new Code(5);
+			i=0;
 			while (i<5)
 			{
-				System.out.println("0=Vert\n 1=Rouge\n 2=Bleu\n 3=Orange\n 4=Jaune\n 5=Blanc\n 6=Noir\n 7=Violet\n 8=Rose\n 9=Marron\n");
+				System.out.println("\n0=Vert\t 1=Rouge\t 2=Bleu\t 3=Orange\t 4=Jaune\t 5=Blanc\t 6=Noir\t 7=Violet\t 8=Rose\t 9=Marron\t");
 				System.out.println("Choisir une couleur:");
                 /* TODO Attention aux Exceptions */
                 int x = sc.nextInt();
@@ -31,7 +32,6 @@ public class Mastermind
 				}
 				else
 				{
-                    /* TODO Pourquoi "changerCouleur" et non "ajouterPion" ? */
 				    monNouveauCode.mesPions[i].changerCouleur(Couleur.values()[x]);
 				}
 				i++;
@@ -39,18 +39,19 @@ public class Mastermind
 			System.out.println(monNouveauCode);
 
 			//On regarde la validiter du code et on creer le code correction
-            /* TODO Ce n'est pas une approche objet. */
-            codeValidation=Code.testMatch(leCodeSecret,monNouveauCode);
+            codeValidation=monNouveauCode.testMatch(leCodeSecret);
             System.out.println(codeValidation);
+            System.out.println(leCodeSecret);
             /* TODO Algorithme général discutable et à discuter en TP. */
-            int k = 0;
+            k = 0;
+            l=0;
             while(k<5)
 			{
-				if(codeValidation.mesPions[k].getCouleur()!=Couleur.VERT)
+				if(codeValidation.mesPions[k].getCouleur().equals(Couleur.VERT))
 				{
-					break;
+					l++;
 				}
-				l++;
+				k++;
 			}
 			if(l==5)
 			{
