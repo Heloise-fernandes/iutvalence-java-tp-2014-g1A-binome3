@@ -41,7 +41,6 @@ public class Mastermind
 			//On regarde la validiter du code et on creer le code correction
             codeValidation=monNouveauCode.testMatch(leCodeSecret);
             System.out.println(codeValidation);
-            System.out.println(leCodeSecret);
             /* TODO Algorithme général discutable et à discuter en TP. */
             k = 0;
             l=0;
