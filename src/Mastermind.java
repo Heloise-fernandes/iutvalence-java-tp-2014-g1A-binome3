@@ -1,15 +1,20 @@
+/* TODO package. */
 import java.util.Scanner;
 
-/* TODO Javadoc. */
+/**
+ * TODO.
+ *
+ * @author TODO.
+ * @version TODO.
+ */
 public class Mastermind 
 {
-
+    /** TODO. */
 	public boolean niveau()
 	{
-        /* TODO Pourquoi forcer la taille ? */
         Code leCodeSecret = new Code();
-		Code codeValidation = new Code(5);
-		Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        /* TODO Noms de variables !!!! */
         int j = 0;
         int i = 0;
         int l = 0;
@@ -32,14 +37,16 @@ public class Mastermind
 				}
 				else
 				{
+                    /** TODO Ce genre de ligne fout la trouille ! Repensez avec des méthodes, etc… */
 				    monNouveauCode.mesPions[i].changerCouleur(Couleur.values()[x]);
 				}
-				i++;
+				/* TODO Est-ce qu'il n'y a pas un problème d'index ? Est-ce que le i++ ne devrait pas être dans le else ? */
+                i++;
 			}
 			System.out.println(monNouveauCode);
 
 			//On regarde la validiter du code et on creer le code correction
-            codeValidation=monNouveauCode.testMatch(leCodeSecret);
+            Code codeValidation = monNouveauCode.testMatch(leCodeSecret);
             System.out.println(codeValidation);
             /* TODO Algorithme général discutable et à discuter en TP. */
             k = 0;

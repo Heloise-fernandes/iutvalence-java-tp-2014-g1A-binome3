@@ -1,23 +1,31 @@
-/* TODO Javadoc */
 /* TODO Package. */
-
 import java.security.SecureRandom;
 
+/** TODO
+ *
+ * @author TODO
+ * @version TODO
+ */
 public class Code
 {
+    /* TODO Private ? Final ? Nom ? */
+    /** TODO. */
 	Pion[] mesPions;
-	/*Constructeur du code normal*/
-	public Code(int nivLongueur)
+
+	/** TODO. */
+	public Code(int longueur)
 	{
-		this.mesPions = new Pion[nivLongueur];
-		for(int i=0;i<nivLongueur;i++)
+		this.mesPions = new Pion[longueur];
+		for(int i=0;i<longueur;i++)
 		{
 			this.mesPions[i] = new Pion(Couleur.BLANC);
 		}
 	}
-/*Constructeur du code secret*/
+
+    /** Génération d'un code alétatoire de taille 5. */
     public Code()
 	{
+        /* TODO Donc on peut construire manuellement des codes plus long mais aléatoirement seulement des codes de taille 5. */
     	this.mesPions = new Pion[5];
 		for (int i=0; i<5; i++)
 		{
@@ -26,36 +34,35 @@ public class Code
 		    this.mesPions[i].changerCouleur(Couleur.values()[pick]);
 		}
 	}
-    /* TODO Etes-vous sur que ca marche ? */
-    /* TODO Algo a� retravailler. */
+
+    /* TODO Algorithme perfectible. */
+    /** TODO. */
 	public Code testMatch(Code bonCode)
 	{
 		int k=0;
-		int l=0;
-		boolean conf=false;
+        /* TODO Encore une taille constante alors qu'on peut manuellement créer des codes plus longs. */
 		Code codeCorrection = new Code(5);
 		while (k<5)
 		{
-			conf=false;
-			l=0;
-			if(bonCode.mesPions[k].getCouleur().equals(this.mesPions[k].getCouleur()))
+            if(bonCode.mesPions[k].getCouleur() == this.mesPions[k].getCouleur())
 			{
 				codeCorrection.mesPions[k].changerCouleur(Couleur.VERT);
-				conf=true;
-				
 			}
 			else
 			{
-				while (l<5)
+                int l = 0;
+                boolean pionPresent = false;
+                /* TODO Encore une taille constante alors qu'on peut manuellement créer des codes plus longs. */
+                while (l<5)
 				{
-                    if(this.mesPions[k].getCouleur().equals(bonCode.mesPions[l].getCouleur()))
+                    if(this.mesPions[k].getCouleur() == bonCode.mesPions[l].getCouleur())
 					{
 						codeCorrection.mesPions[k].changerCouleur(Couleur.ROUGE);
-						conf=true;
+						pionPresent=true;
 					}
 					l++;
 				}
-				if(!conf)
+				if(!pionPresent)
 				{
 					codeCorrection.mesPions[k].changerCouleur(Couleur.NOIR);
 				}
@@ -64,12 +71,15 @@ public class Code
 		}
 		return codeCorrection;
 	}
+
+    @Override
 	public String toString()
 	{
-		String codeTexte=" ";
+        /* TODO StringBuilder à discuter en TP. */
+		StringBuilder codeTexte = new StringBuilder(mesPions.length);
 		for (Pion pion : this.mesPions) {
-			codeTexte += pion.getCouleur();
+			codeTexte.append(pion.getCouleur());
 		}
-		return codeTexte;
+		return codeTexte.toString();
 	}
 }

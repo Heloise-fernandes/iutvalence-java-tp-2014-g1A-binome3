@@ -1,7 +1,13 @@
-/* TODO Javadoc */
 /* TODO Package. */
-public class Application {
 
+/**
+ * TODO.
+ *
+ * @author TODO
+ * @version TODO
+ */
+public class Application {
+    /** TODO. */
 	public static void main(String[] args) 
 	{ 
 		boolean win;
@@ -12,8 +18,10 @@ public class Application {
 			//Choix du niveau
 			//Demarage:
 			Mastermind newGame = new Mastermind();
-			win=newGame.niveau();
+			/* TODO Pourquoi ne pas tester directement le resultat de newGame.niveau() plutôt que de passer par une variable. */
+            win=newGame.niveau();
 			if (win)
+                /* TODO Belle conjugaison ;-) */
 				System.out.println("Vous avez gagner !!");
 			else
 				System.out.println("Vous avez perdu !! (Tetris c'etait bien hein ?)");

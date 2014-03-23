@@ -1,6 +1,11 @@
-/* TODO Javadoc */
 /* TODO Package. */
 
+/**
+ * TODO.
+ *
+ * @author TODO
+ * @version TODO
+ */
 public enum Couleur {
     VERT("VERT "),
     ROUGE("ROUGE "),
@@ -12,15 +17,16 @@ public enum Couleur {
     VIOLET("VIOLET "),
     ROSE("ROSE "),
     MARRON("MARRON ");
-    
-   private final String representation;
 
-   private Couleur(String representation) {
-	   this.representation = representation;
-   }
-   
-   @Override
-   public String toString(){
-	   return representation;
-   }
+    /** TODO. */
+    private final String representation;
+
+    Couleur(String representation) {
+        this.representation = representation;
+    }
+
+    @Override
+    public String toString() {
+        return representation;
+    }
 }
