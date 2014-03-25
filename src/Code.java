@@ -35,34 +35,33 @@ public class Code
     /** TODO. */
 	public Code testMatch(Code bonCode,int longueur)
 	{
-		int k=0;
+		int indiceLongueurDuCode=0;
 		Code codeCorrection = new Code(longueur,false);
-		while (k<longueur)
+		while (indiceLongueurDuCode<longueur)
 		{
-            if(bonCode.mesPions[k].obtenirCouleur() == this.mesPions[k].obtenirCouleur())
+            if(bonCode.mesPions[indiceLongueurDuCode].obtenirCouleur() == this.mesPions[indiceLongueurDuCode].obtenirCouleur())
 			{
-				codeCorrection.mesPions[k].changerCouleur(Couleur.VERT);
+				codeCorrection.mesPions[indiceLongueurDuCode].changerCouleur(Couleur.VERT);
 			}
 			else
 			{
-                int l = 0;
+                int indiceDeLongueur2 = 0;
                 boolean pionPresent = false;
-                /* TODO Encore une taille constante alors qu'on peut manuellement créer des codes plus longs. */
-                while (l<5)
+                while (indiceDeLongueur2<longueur)
 				{
-                    if(this.mesPions[k].obtenirCouleur() == bonCode.mesPions[l].obtenirCouleur())
+                    if(this.mesPions[indiceLongueurDuCode].obtenirCouleur() == bonCode.mesPions[indiceDeLongueur2].obtenirCouleur())
 					{
-						codeCorrection.mesPions[k].changerCouleur(Couleur.ROUGE);
+						codeCorrection.mesPions[indiceLongueurDuCode].changerCouleur(Couleur.ROUGE);
 						pionPresent=true;
 					}
-					l++;
+					indiceDeLongueur2++;
 				}
 				if(!pionPresent)
 				{
-					codeCorrection.mesPions[k].changerCouleur(Couleur.NOIR);
+					codeCorrection.mesPions[indiceLongueurDuCode].changerCouleur(Couleur.NOIR);
 				}
 			}
-			k++;
+			indiceLongueurDuCode++;
 		}
 		return codeCorrection;
 	}
