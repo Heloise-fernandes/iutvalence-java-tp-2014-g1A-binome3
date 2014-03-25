@@ -9,63 +9,61 @@ import java.util.Scanner;
  */
 public class Mastermind 
 {
-    /** TODO. */
-	public boolean niveau()
+    public static final int NOMBRE_DE_TOUR = 15;
+    public static int longueurCode;
+
+	/** TODO. */
+	public boolean niveau(int niveau)
 	{
-        Code leCodeSecret = new Code();
+        Code leCodeSecret = new Code(longueurCode, true);
         Scanner sc = new Scanner(System.in);
-        /* TODO Noms de variables !!!! */
-        int j = 0;
-        int i = 0;
-        int l = 0;
-        int k = 0;
-        /* TODO Pourquoi 15 ? Pourquoi pas une constante ? */
-        while (j<15)
+        int nombreDeTours = 0;
+        int nombreDePionsModifie = 0;
+        int nombreDeVert = 0;
+        int indiceDeCorrection = 0;
+        if(niveau ==1)
+        	longueurCode=5;
+        else
+        	longueurCode=8;
+        	
+        while (nombreDeTours<NOMBRE_DE_TOUR)
 		{
-			Code monNouveauCode= new Code(5);
-			i=0;
-			while (i<5)
+			Code monNouveauCode= new Code(longueurCode, false);
+			nombreDePionsModifie=0;
+			while (nombreDePionsModifie<longueurCode)
 			{
 				System.out.println("\n0=Vert\t 1=Rouge\t 2=Bleu\t 3=Orange\t 4=Jaune\t 5=Blanc\t 6=Noir\t 7=Violet\t 8=Rose\t 9=Marron\t");
 				System.out.println("Choisir une couleur:");
-                /* TODO Attention aux Exceptions */
                 int x = sc.nextInt();
-                if(x>9)
+                if(x>9 || x<0)
 				{
 					System.out.println("Vous etes un boulet, retournez jouer a Tetris.");
-					i--;
 				}
 				else
 				{
                     /** TODO Ce genre de ligne fout la trouille ! Repensez avec des méthodes, etc… */
-				    monNouveauCode.mesPions[i].changerCouleur(Couleur.values()[x]);
+				    monNouveauCode.mesPions[nombreDePionsModifie].changerCouleur(Couleur.values()[x]);
+				    nombreDePionsModifie++;
 				}
-				/* TODO Est-ce qu'il n'y a pas un problème d'index ? Est-ce que le i++ ne devrait pas être dans le else ? */
-                i++;
 			}
 			System.out.println(monNouveauCode);
 
 			//On regarde la validiter du code et on creer le code correction
-            Code codeValidation = monNouveauCode.testMatch(leCodeSecret);
+            Code codeValidation = monNouveauCode.testMatch(leCodeSecret,longueurCode);
             System.out.println(codeValidation);
             /* TODO Algorithme général discutable et à discuter en TP. */
-            k = 0;
-            l=0;
-            while(k<5)
+            indiceDeCorrection = 0;
+            nombreDeVert=0;
+            while(indiceDeCorrection<longueurCode)
 			{
-				if(codeValidation.mesPions[k].getCouleur().equals(Couleur.VERT))
-				{
-					l++;
-				}
-				k++;
+				if(codeValidation.mesPions[indiceDeCorrection].obtenirCouleur().equals(Couleur.VERT))
+					nombreDeVert++;
+				indiceDeCorrection++;
 			}
-			if(l==5)
-			{
+			if(nombreDeVert==longueurCode)
 				return true;
-			}
-			j++;
+			nombreDeTours++;
 		}
 		return false;
 	}
-	
 }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /* TODO Package. */
 
 /**
@@ -10,19 +12,16 @@ public class Application {
     /** TODO. */
 	public static void main(String[] args) 
 	{ 
-		boolean win;
-			//System.out.println("***Menu***");
+			Scanner choixNiveau = new Scanner(System.in);
+			System.out.println("***Menu***");
 			//System.out.println("Choisissez le nombre de joueur (1 ou 2) :");
 			//recuperation de la reponse
-			//Affichage des differents niveaux
-			//Choix du niveau
+			System.out.println("\n***Choix du niveau***\n-niveau 1 : code de 5\n-niveau 2 : code de 8");
+			int niveau=choixNiveau.nextInt();
 			//Demarage:
 			Mastermind newGame = new Mastermind();
-			/* TODO Pourquoi ne pas tester directement le resultat de newGame.niveau() plutÃ´t que de passer par une variable. */
-            win=newGame.niveau();
-			if (win)
-                /* TODO Belle conjugaison ;-) */
-				System.out.println("Vous avez gagner !!");
+			if (newGame.niveau(niveau))
+				System.out.println("Vous avez gagné !!");
 			else
 				System.out.println("Vous avez perdu !! (Tetris c'etait bien hein ?)");
 			//Fin du menu

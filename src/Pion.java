@@ -10,13 +10,12 @@ public class Pion {
     /** Couleur. */
     private Couleur couleur;
 
-    /** Créer un pion de la couleur spécifiée. */
+    /** Creer un pion de la couleur specifiee. */
     public Pion(Couleur c) {
         this.couleur = c;
     }
 
-    /* TODO Eviter le franglais. */
-    public Couleur getCouleur() {
+    public Couleur obtenirCouleur() {
         return this.couleur;
     }
 
