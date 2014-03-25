@@ -7,15 +7,34 @@ import java.util.Scanner;
  * @author TODO.
  * @version TODO.
  */
+/* Il faut reflechir a ce qui constitue une partie de mastermind (atribut methode)
+ * Il faut aussi penser � une classe joueur: Comment intervient un joueur dans la partie?*/
 public class Mastermind 
 {
-    public static final int NOMBRE_DE_TOUR = 15;
-    public static int longueurCode;
+	 public static final int NOMBRE_DE_TOURS = 15;
 
-	/** TODO. */
+	private static final int LONGUEUR_DU_CODE_PAR_DEFAUT = 4;
+	
+	 private int longueurDuCode;
+	 
+	 private final Code codeADeviner;
+	
+	 public Mastermind()
+	 {
+		 this.longueurDuCode = LONGUEUR_DU_CODE_PAR_DEFAUT;
+	 }
+	 
+	 public Mastermind(int longueurCode)
+	 {
+		 this.longueurDuCode = longueurCode;
+	 }
+	
+
+	/**Methode qui gere une partie
+	 * @param int
+	 * @return boolean */
 	public boolean niveau(int niveau)
 	{
-        Code leCodeSecret = new Code(longueurCode, true);
         Scanner sc = new Scanner(System.in);
         int nombreDeTours = 0;
         int nombreDePionsModifie = 0;
@@ -25,15 +44,15 @@ public class Mastermind
         	longueurCode=5;
         else
         	longueurCode=8;
-        	
-        while (nombreDeTours<NOMBRE_DE_TOUR)
+        Code leCodeSecret = new Code(longueurCode, true);
+        while (nombreDeTours<NOMBRE_DE_TOURS)
 		{
 			Code monNouveauCode= new Code(longueurCode, false);
 			nombreDePionsModifie=0;
 			while (nombreDePionsModifie<longueurCode)
 			{
 				System.out.println("\n0=Vert\t 1=Rouge\t 2=Bleu\t 3=Orange\t 4=Jaune\t 5=Blanc\t 6=Noir\t 7=Violet\t 8=Rose\t 9=Marron\t");
-				System.out.println("Choisir une couleur:");
+				System.out.println("Choisir une couleur a mettre en position "+(nombreDePionsModifie+1)+" :");
                 int x = sc.nextInt();
                 if(x>9 || x<0)
 				{
@@ -42,7 +61,7 @@ public class Mastermind
 				else
 				{
                     /** TODO Ce genre de ligne fout la trouille ! Repensez avec des méthodes, etc… */
-				    monNouveauCode.mesPions[nombreDePionsModifie].changerCouleur(Couleur.values()[x]);
+				    monNouveauCode.pions[nombreDePionsModifie].changerCouleur(Couleur.values()[x]);
 				    nombreDePionsModifie++;
 				}
 			}
@@ -51,19 +70,29 @@ public class Mastermind
 			//On regarde la validiter du code et on creer le code correction
             Code codeValidation = monNouveauCode.testMatch(leCodeSecret,longueurCode);
             System.out.println(codeValidation);
-            /* TODO Algorithme général discutable et à discuter en TP. */
+            /* TODO Algorithme general discutable et à discuter en TP. */
             indiceDeCorrection = 0;
             nombreDeVert=0;
             while(indiceDeCorrection<longueurCode)
 			{
-				if(codeValidation.mesPions[indiceDeCorrection].obtenirCouleur().equals(Couleur.VERT))
+				if(codeValidation.pions[indiceDeCorrection].obtenirCouleur().equals(Couleur.VERT))
 					nombreDeVert++;
 				indiceDeCorrection++;
 			}
 			if(nombreDeVert==longueurCode)
+			{
+				System.out.println(leCodeSecret);
+				System.out.println("Vous avez r�ussi en "+nombreDeTours+" coups");
 				return true;
+			}
 			nombreDeTours++;
 		}
+        System.out.println(leCodeSecret);
 		return false;
+	}
+
+	public void jouer() {
+		// TODO Auto-generated method stub
+		
 	}
 }
