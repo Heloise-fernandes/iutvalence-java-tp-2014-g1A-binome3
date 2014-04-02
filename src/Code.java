@@ -1,23 +1,28 @@
 /* TODO Package. */
 import java.security.SecureRandom;
 
+
 /**
  * TODO
  * 
  * @author TODO
  * @version TODO
  */
-public class Code {
+public class Code 
+{
+	private static final int LONGUEUR_DU_CODE_PAR_DEFAUT = 5;
 	private final Pion[] pions;
 
 	/**
-	 * Contructeur. Est-ce possible?
-	 * 
+	 * Constructeur  de code aléatoire
 	 * @param boolean, int
 	 */
-	public Code(int longueur) {
+	public Code(int longueur) 
+	{
 		this.pions = new Pion[longueur];
+		
 		SecureRandom generateurDeNombresAleatoires = new SecureRandom();
+		
 		for (int numeroDuPion = 0; numeroDuPion < longueur; numeroDuPion++) 
 		{
 			int nombreDeCouleurs = Couleur.values().length;
@@ -27,11 +32,16 @@ public class Code {
 		}
 	}
 	
-	public Code(Pion[] pions)
+	/**
+	 * Constructeur  de code creer par le joueur
+	 * @param boolean, int
+	 */
+	public Code(Pion[] code)
 	{
-		this.pions = pions;
+		this.pions = code;
 	}
-
+	
+		
 	/* TODO Algorithme perfectible. */
 	/**
 	 * Fonction qui verifie le code et renvoie un code de correction
@@ -40,34 +50,64 @@ public class Code {
 	 *            , int
 	 * @return code
 	 */
-	public Code testMatch(Code bonCode, int longueur) {
+	
+	public Code testMatch(Code bonCode, int longueur) 
+	{
 		int indiceLongueurDuCode = 0;
-		Code codeCorrection = new Code(longueur, false);
-		while (indiceLongueurDuCode < longueur) {
-			if (bonCode.pions[indiceLongueurDuCode].obtenirCouleur() == this.pions[indiceLongueurDuCode]
-					.obtenirCouleur()) {
-				codeCorrection.pions[indiceLongueurDuCode]
-						.changerCouleur(Couleur.VERT);
-			} else {
+		Pion leCodeCorrection[]= new Pion[longueur];
+		//initialisation du code correction
+		Code codeCorrection = new Code(leCodeCorrection);
+		
+		while (indiceLongueurDuCode < longueur) 
+		{
+			//Si la couleur du pion du code secret et egale à celle du pion du code courent  à l'indice indiceLongueurDuCode
+			if (bonCode.pions[indiceLongueurDuCode].obtenirCouleur() == this.pions[indiceLongueurDuCode].obtenirCouleur()) 
+			{
+				codeCorrection.pions[indiceLongueurDuCode]=new Pion(Couleur.VERT);
+			} 
+			
+			else 
+			{
 				int indiceDeLongueur2 = 0;
 				boolean pionPresent = false;
-				while (indiceDeLongueur2 < longueur) {
-					if (this.pions[indiceLongueurDuCode].obtenirCouleur() == bonCode.pions[indiceDeLongueur2]
-							.obtenirCouleur()) {
-						codeCorrection.pions[indiceLongueurDuCode]
-								.changerCouleur(Couleur.ROUGE);
+				//On cherche si la couleur est presente
+				while (indiceDeLongueur2 < longueur) 
+				{
+					if (this.pions[indiceLongueurDuCode].obtenirCouleur() == bonCode.pions[indiceDeLongueur2].obtenirCouleur()) 
+					{
+						codeCorrection.pions[indiceLongueurDuCode]= new Pion(Couleur.ROUGE);
 						pionPresent = true;
 					}
 					indiceDeLongueur2++;
 				}
+				
 				if (!pionPresent) {
-					codeCorrection.pions[indiceLongueurDuCode]
-							.changerCouleur(Couleur.NOIR);
+					codeCorrection.pions[indiceLongueurDuCode]= new Pion(Couleur.NOIR);
 				}
 			}
 			indiceLongueurDuCode++;
 		}
 		return codeCorrection;
+	}
+	
+	public boolean analyseCodeCorrection()
+	{
+		int indiceDeCorrection = 0;
+        int nombreDeVert=0;
+        
+        while(indiceDeCorrection<LONGUEUR_DU_CODE_PAR_DEFAUT)
+		{
+			if(this.pions[indiceDeCorrection].obtenirCouleur().equals(Couleur.VERT))
+				nombreDeVert++;
+			indiceDeCorrection++;
+		}
+        
+		if(nombreDeVert==LONGUEUR_DU_CODE_PAR_DEFAUT)
+		{
+			return true;
+		}
+	
+		return false;
 	}
 
 	@Override
