@@ -4,7 +4,6 @@ public class Joueur
 {
 	
 //le joueur peu creer un tableau de pions il peut choisir une couleur mais il ne possede pas d'attribut et de constructeur	
-	private static final int LONGUEUR_DU_CODE_PAR_DEFAUT = 5;
 	private final String nom;
 	
 	public Joueur( String n)
@@ -15,11 +14,14 @@ public class Joueur
 	public Pion[] creerUnNouveauTableauDePion()
 	{
 		int indiceTableau=0;
-		Pion tableauDePion[] =new Pion[LONGUEUR_DU_CODE_PAR_DEFAUT];
-		while (indiceTableau<LONGUEUR_DU_CODE_PAR_DEFAUT)
+		int posi=1;
+		Pion tableauDePion[] =new Pion[Mastermind.longueurDuCode];
+		while (indiceTableau<Mastermind.longueurDuCode)
 		{
+			System.out.println("Choisir une couleur a mettre en position  :"+ posi);
 			tableauDePion[indiceTableau]=new Pion(choisirUneCouleur());
 			indiceTableau++;
+			posi++;
 		}
 		return tableauDePion;
 	}
@@ -32,7 +34,7 @@ public class Joueur
 		
 		//Liste des Couleurs
 		System.out.println("\n0=Vert\t 1=Rouge\t 2=Bleu\t 3=Orange\t 4=Jaune\t 5=Blanc\t 6=Noir\t 7=Violet\t 8=Rose\t 9=Marron\t");
-		System.out.println("Choisir une couleur a mettre en position  :");
+		
 		
 		int x = sc.nextInt();
 		

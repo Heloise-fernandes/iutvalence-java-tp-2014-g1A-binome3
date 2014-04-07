@@ -10,9 +10,9 @@ import java.security.SecureRandom;
  */
 public class Code 
 {
-	private static final int LONGUEUR_DU_CODE_PAR_DEFAUT = 5;
 	private final Pion[] pions;
 
+	
 	/**
 	 * Constructeur  de code aléatoire
 	 * @param boolean, int
@@ -25,12 +25,13 @@ public class Code
 		
 		for (int numeroDuPion = 0; numeroDuPion < longueur; numeroDuPion++) 
 		{
-			int nombreDeCouleurs = Couleur.values().length;
-			int numeroDeCouleur = generateurDeNombresAleatoires.nextInt(nombreDeCouleurs);
-			Couleur couleur = Couleur.values()[numeroDeCouleur];
+			Couleur[] couleurs = Couleur.values();
+			int numeroDeCouleur = generateurDeNombresAleatoires.nextInt(couleurs.length);
+			Couleur couleur = couleurs[numeroDeCouleur];
 			this.pions[numeroDuPion] = new Pion(couleur);
 		}
 	}
+	
 	
 	/**
 	 * Constructeur  de code creer par le joueur
@@ -41,7 +42,11 @@ public class Code
 		this.pions = code;
 	}
 	
-		
+	
+	public Pion[] obetenirTabCode()
+	{
+		return this.pions;
+	}
 	/* TODO Algorithme perfectible. */
 	/**
 	 * Fonction qui verifie le code et renvoie un code de correction
@@ -51,17 +56,17 @@ public class Code
 	 * @return code
 	 */
 	
-	public Code testMatch(Code bonCode, int longueur) 
+	public Code testMatch(Code bonCode) 
 	{
 		int indiceLongueurDuCode = 0;
-		Pion leCodeCorrection[]= new Pion[longueur];
+		Pion leCodeCorrection[]= new Pion[Mastermind.longueurDuCode];
 		//initialisation du code correction
 		Code codeCorrection = new Code(leCodeCorrection);
 		
-		while (indiceLongueurDuCode < longueur) 
+		while (indiceLongueurDuCode < Mastermind.longueurDuCode) 
 		{
 			//Si la couleur du pion du code secret et egale à celle du pion du code courent  à l'indice indiceLongueurDuCode
-			if (bonCode.pions[indiceLongueurDuCode].obtenirCouleur() == this.pions[indiceLongueurDuCode].obtenirCouleur()) 
+			if (bonCode.pions[indiceLongueurDuCode].obtenirCouleur().equals(this.pions[indiceLongueurDuCode].obtenirCouleur()))
 			{
 				codeCorrection.pions[indiceLongueurDuCode]=new Pion(Couleur.VERT);
 			} 
@@ -71,9 +76,9 @@ public class Code
 				int indiceDeLongueur2 = 0;
 				boolean pionPresent = false;
 				//On cherche si la couleur est presente
-				while (indiceDeLongueur2 < longueur) 
+				while (indiceDeLongueur2 < Mastermind.longueurDuCode) 
 				{
-					if (this.pions[indiceLongueurDuCode].obtenirCouleur() == bonCode.pions[indiceDeLongueur2].obtenirCouleur()) 
+					if (this.pions[indiceLongueurDuCode].obtenirCouleur().equals(bonCode.pions[indiceDeLongueur2].obtenirCouleur())) 
 					{
 						codeCorrection.pions[indiceLongueurDuCode]= new Pion(Couleur.ROUGE);
 						pionPresent = true;
@@ -95,14 +100,14 @@ public class Code
 		int indiceDeCorrection = 0;
         int nombreDeVert=0;
         
-        while(indiceDeCorrection<LONGUEUR_DU_CODE_PAR_DEFAUT)
+        while(indiceDeCorrection<Mastermind.longueurDuCode)
 		{
 			if(this.pions[indiceDeCorrection].obtenirCouleur().equals(Couleur.VERT))
 				nombreDeVert++;
 			indiceDeCorrection++;
 		}
         
-		if(nombreDeVert==LONGUEUR_DU_CODE_PAR_DEFAUT)
+		if(nombreDeVert==Mastermind.longueurDuCode)
 		{
 			return true;
 		}

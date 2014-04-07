@@ -13,14 +13,16 @@ public class Application {
 	public static void main(String[] args) 
 	{ 
 			Scanner choixNiveau = new Scanner(System.in);
+		    
 			System.out.println("***Menu***");
-			//System.out.println("Choisissez le nombre de joueur (1 ou 2) :");
-			//recuperation de la reponse
-			System.out.println("\n***Choix du niveau***\n-niveau 1 : code de 5\n-niveau 2 : code de 8");
+			
+			
+			System.out.println("\n***Choix du niveau***\n-niveau 1 : code de 5 , taper 1\n-niveau 2 : code de 6, taper 2, taper 1\n-niveau 3 : code de 7, taper 3");
 			int niveau=choixNiveau.nextInt();
+		
 			//Demarage:
-			Mastermind newGame = new Mastermind();
-			if (newGame.niveau(niveau))
+			Mastermind newGame = new Mastermind(niveau);
+			if (newGame.jouer())
 				System.out.println("Vous avez gagné !!");
 			else
 				System.out.println("Vous avez perdu !! (Tetris c'etait bien hein ?)");

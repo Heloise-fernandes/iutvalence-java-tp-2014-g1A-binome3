@@ -11,19 +11,26 @@ import java.util.Scanner;
  * Il faut aussi penser à une classe joueur: Comment intervient un joueur dans la partie?*/
 public class Mastermind 
 {
-	 public static final int NOMBRE_DE_TOURS = 15;
+	 public static final int NOMBRE_DE_TOURS = 10;
 
-	 private static final int LONGUEUR_DU_CODE_PAR_DEFAUT = 5;
-	
+	 private static final int LONGUEUR_DU_CODE_PAR_DEFAUT = 4;
+	 
+	 public static int longueurDuCode;
 
 	 
 	 private final Code codeSecret;
 	 private Joueur leJoueur;
 	
-	 public Mastermind()
+	 public Mastermind(int niveau)
 	 {
-		 codeSecret= new Code(LONGUEUR_DU_CODE_PAR_DEFAUT);
-		 leJoueur= new Joueur("bob");
+		 Scanner nomDuJoueur = new Scanner(System.in);
+		 
+		 longueurDuCode = LONGUEUR_DU_CODE_PAR_DEFAUT + niveau;
+		 codeSecret= new Code(longueurDuCode);
+		 
+		 System.out.println("Choisir nom du joueur");
+		 String nomJoueur = nomDuJoueur.nextLine();
+		 leJoueur= new Joueur("nomJoueur");
 	 }
 	 
 
@@ -35,15 +42,19 @@ public class Mastermind
 		{
 			
 		//demander code joueur et verifier code
-			System.out.println(leJoueur.creeCodeJoueur());
-			Code codeCorrectif = leJoueur.creeCodeJoueur().testMatch(codeSecret, LONGUEUR_DU_CODE_PAR_DEFAUT);
+			Code leCodeDuJoueur= leJoueur.creeCodeJoueur();
+			System.out.println( "**********************************************************************\n");
+			System.out.println( leCodeDuJoueur );
+			Code codeCorrectif = leCodeDuJoueur.testMatch(codeSecret);
+			System.out.println(codeCorrectif);
+			System.out.println( "**********************************************************************\n"); 
 			
 			if (codeCorrectif.analyseCodeCorrection())
 			{
 				return true;
 			}
+			nombreDeTours++;
 			
-	
 		}
 		return false;
 	}
