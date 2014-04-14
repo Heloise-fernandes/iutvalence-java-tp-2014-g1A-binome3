@@ -1,12 +1,8 @@
-
-
-/* TODO Package. */
-
 /**
- * TODO.
+ * enumeration Couleur
  *
- * @author TODO
- * @version TODO
+ * @author Desmet/Fernandes
+ *
  */
 public enum Couleur {
     VERT("VERT "),
@@ -22,7 +18,11 @@ public enum Couleur {
 
     /** Representation texte de la couleur*/
     private final String representation;
-
+    
+    /**
+     * Constructeur d'une couleur
+     * @param representation
+     */
     Couleur(String representation) 
     {
         this.representation = representation;

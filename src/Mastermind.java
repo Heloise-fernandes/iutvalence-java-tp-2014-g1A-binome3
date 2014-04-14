@@ -1,14 +1,9 @@
-/* TODO package. */
-import java.util.Scanner;
-
 /**
- * TODO.
+ * objet mastermind
  *
- * @author TODO.
- * @version TODO.
+ * @author Desmet/Fernandes
+ * 
  */
-/* Il faut reflechir a ce qui constitue une partie de mastermind (atribut methode)
- * Il faut aussi penser à une classe joueur: Comment intervient un joueur dans la partie?*/
 public class Mastermind 
 {
 	 public static final int NOMBRE_DE_TOURS = 10;
@@ -21,33 +16,40 @@ public class Mastermind
 	 private final Code codeSecret;
 	 private Joueur leJoueur;
 	
-	 public Mastermind(int niveau)
+	 /**
+	  * Constructeur
+	  *
+	  * @author Desmet/Fernandes
+	  * @param un entier qui correspond au niveau, une vue et un nom pour le joueur
+	  */
+	 public Mastermind(int niveau, Vue vue, String nom)
 	 {
-		 Scanner nomDuJoueur = new Scanner(System.in);
-		 
 		 longueurDuCode = LONGUEUR_DU_CODE_PAR_DEFAUT + niveau;
 		 codeSecret= new Code(longueurDuCode);
-		 
-		 System.out.println("Choisir nom du joueur");
-		 String nomJoueur = nomDuJoueur.nextLine();
-		 leJoueur= new Joueur(nomJoueur);
+		 leJoueur=new Joueur(nom);
 	 }
 	 
 
 
-	public boolean jouer() 
+	 /**
+	  * Gestionnaire d'une partie de mastermind
+	  *
+	  * @author Desmet/Fernandes
+	  * @param une vue
+	  * @return boolean
+	  * 
+	  */
+	 public boolean jouer(Vue vue) 
 	{
 		int nombreDeTours = 0;
 		while (nombreDeTours<NOMBRE_DE_TOURS)
 		{
 			
 		//demander code joueur et verifier code
-			Code leCodeDuJoueur= leJoueur.creeCodeJoueur();
-			System.out.println( "**********************************************************************\n");
-			System.out.println( leCodeDuJoueur );
+			Code leCodeDuJoueur= leJoueur.creeCodeJoueur(vue);
+			vue.afficherCode(leCodeDuJoueur);
 			Code codeCorrectif = leCodeDuJoueur.testMatch(codeSecret);
-			System.out.println(codeCorrectif);
-			System.out.println( "**********************************************************************\n"); 
+			vue.afficherCodeCorrection(codeCorrectif);
 			
 			if (codeCorrectif.analyseCodeCorrection())
 			{

@@ -1,12 +1,10 @@
-/* TODO Package. */
 import java.security.SecureRandom;
 
-
 /**
- * TODO
- * 
- * @author TODO
- * @version TODO
+ * objet Code
+ *
+ * @author Desmet/Fernandes
+ *
  */
 public class Code 
 {
@@ -15,7 +13,7 @@ public class Code
 	
 	/**
 	 * Constructeur  de code aléatoire
-	 * @param boolean, int
+	 * @param int
 	 */
 	public Code(int longueur) 
 	{
@@ -35,7 +33,7 @@ public class Code
 	
 	/**
 	 * Constructeur  de code creer par le joueur
-	 * @param boolean, int
+	 * @param tableau de pion
 	 */
 	public Code(Pion[] code)
 	{
@@ -47,12 +45,11 @@ public class Code
 	{
 		return this.pions;
 	}
-	/* TODO Algorithme perfectible. */
+
 	/**
 	 * Fonction qui verifie le code et renvoie un code de correction
 	 * 
 	 * @param code
-	 *            , int
 	 * @return code
 	 */
 	
