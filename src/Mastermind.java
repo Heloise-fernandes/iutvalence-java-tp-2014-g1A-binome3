@@ -30,7 +30,7 @@ public class Mastermind
 		 
 		 System.out.println("Choisir nom du joueur");
 		 String nomJoueur = nomDuJoueur.nextLine();
-		 leJoueur= new Joueur("nomJoueur");
+		 leJoueur= new Joueur(nomJoueur);
 	 }
 	 
 

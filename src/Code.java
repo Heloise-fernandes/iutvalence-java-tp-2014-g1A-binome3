@@ -117,7 +117,6 @@ public class Code
 
 	@Override
 	public String toString() {
-		/* TODO StringBuilder à discuter en TP. */
 		StringBuilder codeTexte = new StringBuilder(pions.length);
 		for (Pion pion : this.pions) {
 			codeTexte.append(pion.obtenirCouleur());

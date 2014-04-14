@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Joueur 
 {
 	
-//le joueur peu creer un tableau de pions il peut choisir une couleur mais il ne possede pas d'attribut et de constructeur	
+//le joueur peu creer un tableau de pions il peut choisir une couleur 
 	private final String nom;
 	
 	public Joueur( String n)
@@ -33,8 +33,9 @@ public class Joueur
 		Scanner sc = new Scanner(System.in);
 		
 		//Liste des Couleurs
+		System.out.println("------------------------------------------------------------------------------------------------------"); 
 		System.out.println("\n0=Vert\t 1=Rouge\t 2=Bleu\t 3=Orange\t 4=Jaune\t 5=Blanc\t 6=Noir\t 7=Violet\t 8=Rose\t 9=Marron\t");
-		
+		System.out.println("------------------------------------------------------------------------------------------------------"); 
 		
 		int x = sc.nextInt();
 		
