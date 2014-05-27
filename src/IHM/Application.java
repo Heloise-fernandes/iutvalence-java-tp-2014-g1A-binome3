@@ -1,4 +1,6 @@
-import IHM.AffichageFenetre;
+package IHM;
+
+
 
 import javax.swing.SwingUtilities;
 
@@ -8,10 +10,15 @@ import javax.swing.SwingUtilities;
  * @author Desmet/Fernandes
  * @version 3.0.0
  */
-public class Application {
+public class Application 
+{
     /** main du programme */
-    public static void main(String[] args) {
-        if ((args.length == 1) && "--gui".equals(args[0])) { /* NON-NLS */
+    public static void main(String[] args) 
+    {
+    	PartieMastermind mastermind= new PartieMastermind(5);
+    	SwingUtilities.invokeLater(new AffichageFenetre(mastermind));
+    	/*
+        if ((args.length == 1) && "--gui".equals(args[0])) { /* NON-NLS 
             SwingUtilities.invokeLater(new AffichageFenetre());
         }
         else {
@@ -20,6 +27,6 @@ public class Application {
             String nom = vue.choisirJoueur();
             Mastermind newGame = new Mastermind(niveauChoisi, vue, nom);
             vue.gagner(newGame.jouer(vue));
-        }
+        }*/
     }
 }

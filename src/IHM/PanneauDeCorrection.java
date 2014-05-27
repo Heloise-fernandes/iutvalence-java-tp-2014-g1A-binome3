@@ -1,6 +1,7 @@
 package IHM;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,10 +31,16 @@ public class PanneauDeCorrection extends JPanel implements ControleurDuCodeDeCor
 	}
 	
 	@Override
-	public void afficherCodeCorrection(int ligne )
+	public void afficherCodeCorrection(int ligne, ArrayList<Integer> code )
 	{
 		for(int indice=0; indice<5; indice++)
 		{
-			this.pionCorrection[ligne][indice].setBackground(Color.BLACK);
+			if(code.get(indice)==0)
+				this.pionCorrection[ligne][indice].setBackground(Color.BLACK);
+			if(code.get(indice)==1)
+				this.pionCorrection[ligne][indice].setBackground(Color.GREEN);
+			if(code.get(indice)==2)
+				this.pionCorrection[ligne][indice].setBackground(Color.RED);
+			
 		}}
 }

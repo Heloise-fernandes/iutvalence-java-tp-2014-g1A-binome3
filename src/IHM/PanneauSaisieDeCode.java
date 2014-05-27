@@ -1,6 +1,7 @@
 package IHM;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -38,16 +39,26 @@ public class PanneauSaisieDeCode extends JPanel implements ControleDuCodeDeValid
 		}
 	}
 	
-	@Override
-	public int[] renvoieDesCouleurs(int ligne)
+	public ArrayList<Color> obtenirListeCouleurBouton()
 	{
-		int[] listeCouleur= new int[5];
+		return this.pionSaisie[0][0].obtenirListeCouleur();
+	}
+	@Override
+	public ArrayList<Integer> renvoieDesCouleurs(int ligne)
+	{
+		ArrayList<Integer> listeCouleur= new ArrayList<Integer>();
 		for(int indice=0;indice<5;indice++)
 		{
-			listeCouleur[indice]=this.pionSaisie[ligne][indice].obtenirNumCouleur();
+			listeCouleur.add(indice,this.pionSaisie[ligne][indice].obtenirNumCouleur());
 		}
 		return listeCouleur;
 	}
 	
-	
+	public void ActiverLigne(int ligne)
+	{
+		for(int indice=0;indice<5;indice++)
+		{
+			this.pionSaisie[ligne][indice].setEnabled(true);
+		}
+	}
 }

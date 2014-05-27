@@ -1,5 +1,6 @@
 package IHM;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -8,11 +9,12 @@ import java.awt.Container;
 
 public class AffichageFenetre implements Runnable 
 {
-	int numTour;
+	private ControleDuJEu jeu;
 	
-	public AffichageFenetre()
+	public AffichageFenetre(ControleDuJEu master)
 	{
-		this.numTour=0;
+		this.jeu=master;
+		
 	}
     @Override
     public void run() 
@@ -22,12 +24,16 @@ public class AffichageFenetre implements Runnable
         fenetre.setResizable(false);
 
         Container global = fenetre.getContentPane();
+        
         global.setLayout(new BorderLayout());
+       
         ControleurDuCodeDeCorrection panneauCorrection = new PanneauDeCorrection();
         global.add((JPanel) panneauCorrection , BorderLayout.WEST);
+        
         ControleDuCodeDeValidation panel = new PanneauSaisieDeCode();
         global.add((JPanel) panel, BorderLayout.CENTER);
-        global.add(new PanneauDeValidation(panel, panneauCorrection), BorderLayout.EAST);
+        
+        global.add(new PanneauDeValidation(panel, panneauCorrection, jeu), BorderLayout.EAST);
         
 
         fenetre.setVisible(true);

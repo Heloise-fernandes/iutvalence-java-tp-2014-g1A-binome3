@@ -15,6 +15,8 @@ public class BoutonChangeCouleur extends JButton implements ActionListener
 	
 	public BoutonChangeCouleur()
 	{
+		this.numCouleurBouton=0;
+		
 		this.listeCouleur=new ArrayList<Color>();
 		this.listeCouleur.add(Color.GREEN);
 		this.listeCouleur.add(Color.RED);
@@ -27,9 +29,7 @@ public class BoutonChangeCouleur extends JButton implements ActionListener
 		this.listeCouleur.add(Color.PINK);
 		this.listeCouleur.add(Color.CYAN);
 		
-	
-		
-		this.setBackground(Color.GREEN);
+		this.setBackground(this.listeCouleur.get(numCouleurBouton));
 		this.addActionListener(this);
 	}
 	
@@ -43,5 +43,10 @@ public class BoutonChangeCouleur extends JButton implements ActionListener
 	public int obtenirNumCouleur()
 	{
 		return this.numCouleurBouton;
+	}
+	
+	public ArrayList<Color> obtenirListeCouleur()
+	{
+		return this.listeCouleur;
 	}
 }
