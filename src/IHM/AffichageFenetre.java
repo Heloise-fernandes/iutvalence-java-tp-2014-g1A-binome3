@@ -3,6 +3,7 @@ package IHM;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -22,6 +23,7 @@ public class AffichageFenetre implements Runnable
         JFrame fenetre = new JFrame("Mastermind");
         fenetre.setSize(500, 500);
         fenetre.setResizable(false);
+        fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         Container global = fenetre.getContentPane();
         

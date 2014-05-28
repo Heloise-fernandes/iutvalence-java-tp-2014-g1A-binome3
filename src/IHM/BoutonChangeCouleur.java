@@ -36,8 +36,14 @@ public class BoutonChangeCouleur extends JButton implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent event )
 	{
-		this.setBackground(listeCouleur.get(numCouleurBouton++));
-		this.numCouleurBouton %= 10;
+		this.numCouleurBouton++;
+		if (numCouleurBouton==10)
+			{this.setBackground(listeCouleur.get(0));
+			this.numCouleurBouton=0;
+			}
+		this.setBackground(listeCouleur.get(numCouleurBouton));
+		
+		
 	}
 	
 	public int obtenirNumCouleur()

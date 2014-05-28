@@ -48,10 +48,21 @@ public class BoutonOK extends JButton implements ActionListener
 			ArrayList<Integer> couleurs = code.renvoieDesCouleurs(ligne);
 			codeCorrection=this.mastermindCode.testeCodeSecret(couleurs);
 			correction.afficherCodeCorrection(ligne, codeCorrection);
+			
+			if (mastermindCode.codeJuste(codeCorrection))
+			{
+				FenCorrection fenFinGangé= new FenCorrection(this.code.obtenirListeCouleurBouton(),codeCorrection.size(), this.mastermindCode.obetenirCodeSecret(), true);
+			}
 		}
 		if(this.boutonSuivant==null)
 		{
-			FenCorrection fenFin= new FenCorrection(this.code.obtenirListeCouleurBouton(),codeCorrection.size());
+			ArrayList<Integer> couleurs = code.renvoieDesCouleurs(ligne);
+			codeCorrection=this.mastermindCode.testeCodeSecret(couleurs);
+			if (!mastermindCode.codeJuste(codeCorrection)) 
+				{FenCorrection fenFinPerdu= new FenCorrection(this.code.obtenirListeCouleurBouton(),codeCorrection.size(), this.mastermindCode.obetenirCodeSecret(), false);}
+			else
+				{FenCorrection fenFin= new FenCorrection(this.code.obtenirListeCouleurBouton(),codeCorrection.size(), this.mastermindCode.obetenirCodeSecret(),true);}
+				
 		}
 	}
 }
